@@ -37,7 +37,7 @@
 
 Name:           jakarta-commons-cli
 Version:        1.0
-Release:        %mkrel 8.0.2
+Release:        %mkrel 8.0.3
 Epoch:          0
 Summary:        Jakarta Commons CLI, a Command Line Interface for Java
 License:        Apache License
@@ -56,8 +56,14 @@ BuildRequires:  junit
 BuildRequires:  jakarta-commons-lang
 BuildRequires:  jakarta-commons-logging
 BuildRequires:  jpackage-utils >= 0:1.6
-Requires:       jakarta-commons-lang
-Requires:       jakarta-commons-logging
+
+# (anssi) There is no reason to depend on these, as programs may use
+# jakarta-commons-cli even without them, such as azureus. Installing them
+# brings no benefit unless they are explicitely placed in classpath, in which
+# case the end-user application should require them directly anyway. This is
+# also how Debian does it.
+#Requires:       jakarta-commons-lang
+#Requires:       jakarta-commons-logging
 
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
