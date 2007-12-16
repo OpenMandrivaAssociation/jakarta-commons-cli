@@ -37,7 +37,7 @@
 
 Name:           jakarta-commons-cli
 Version:        1.0
-Release:        %mkrel 8.0.3
+Release:        %mkrel 8.0.4
 Epoch:          0
 Summary:        Jakarta Commons CLI, a Command Line Interface for Java
 License:        Apache License
@@ -55,7 +55,7 @@ BuildRequires:  ant-junit >= 0:1.6
 BuildRequires:  junit
 BuildRequires:  jakarta-commons-lang
 BuildRequires:  jakarta-commons-logging
-BuildRequires:  jpackage-utils >= 0:1.6
+BuildRequires:  java-rpmbuild >= 0:1.6
 
 # (anssi) There is no reason to depend on these, as programs may use
 # jakarta-commons-cli even without them, such as azureus. Installing them
