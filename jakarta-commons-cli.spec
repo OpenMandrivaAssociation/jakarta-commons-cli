@@ -45,7 +45,6 @@ Group:          Development/Java
 URL:            http://jakarta.apache.org/commons/cli/
 Source:         http://archive.apache.org/dist/jakarta/commons/cli/source/cli-1.0-src.tar.gz
 Patch0:         %{name}-crosslink.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %if ! %{gcj_support}
 BuildArch:      noarch
