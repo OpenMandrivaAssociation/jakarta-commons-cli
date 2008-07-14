@@ -28,24 +28,22 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-%define _with_gcj_support 1
-%define gcj_support %{?_with_gcj_support:1}%{!?_with_gcj_support:%{?_without_gcj_support:0}%{!?_without_gcj_support:%{?_gcj_support:%{_gcj_support}}%{!?_gcj_support:0}}}
+%define gcj_support 0
 
 %define base_name       cli
 %define short_name      commons-%{base_name}
 %define section         devel
 
 Name:           jakarta-commons-cli
-Version:        1.0
-Release:        %mkrel 8.0.4
+Version:        1.1
+Release:        %mkrel 0.0.1
 Epoch:          0
 Summary:        Jakarta Commons CLI, a Command Line Interface for Java
 License:        Apache License
 Group:          Development/Java
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:            http://jakarta.apache.org/commons/cli/
-Source:         http://archive.apache.org/dist/jakarta/commons/cli/source/cli-1.0-src.tar.gz
-Patch0:         %{name}-crosslink.patch
+Source:         http://archive.apache.org/dist/jakarta/commons/cli/source/%{short_name}-%{version}-src.tar.gz
 
 %if ! %{gcj_support}
 BuildArch:      noarch
@@ -77,29 +75,27 @@ the command line arguments and options.
 Summary:        Javadoc for %{name}
 Group:          Development/Java
 BuildRequires:  java-javadoc
-Requires(post):   /bin/rm,/bin/ln
-Requires(postun): /bin/rm
 
 %description    javadoc
 Javadoc for %{name}.
 
 
 %prep
-%setup -q -n %{short_name}-%{version}
-%patch0 -p0
+%setup -q -n %{short_name}-%{version}-src
+%remove_java_binaries
 
 
 %build
 export OPT_JAR_LIST="ant/ant-junit junit"
 export CLASSPATH=$(build-classpath commons-logging commons-lang)
-export CLASSPATH="$CLASSPATH:target/%{short_name}.jar:target/test-classes"
+export CLASSPATH="$CLASSPATH:target/classes:target/test-classes"
  # for tests
 mkdir lib
 %{ant} \
   -Dbuild.sysclasspath=only \
   -Dfinal.name=%{short_name} \
   -Dj2se.javadoc=%{_javadocdir}/java \
-  jar test dist
+  jar dist
 
 
 %install
@@ -113,12 +109,10 @@ cp -p dist/%{short_name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 
 # javadoc
 mkdir -p $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr dist/docs/apidocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
+%{gcj_compile}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -138,11 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0644,root,root,0755)
 %doc LICENSE.txt README.txt
 %{_javadir}/*
-
-%if %{gcj_support}
-%dir %{_libdir}/gcj/%{name}
-%attr(-,root,root) %{_libdir}/gcj/%{name}/%{name}-%{version}.jar.*
-%endif
+%{gcj_files}
 
 %files javadoc
 %defattr(0644,root,root,0755)
