@@ -36,8 +36,7 @@
 
 Name:           jakarta-commons-cli
 Version:        1.1
-Release:        %mkrel 0.0.5
-Epoch:          0
+Release:        1
 Summary:        Jakarta Commons CLI, a Command Line Interface for Java
 License:        Apache License
 Group:          Development/Java
@@ -138,3 +137,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(0644,root,root,0755)
 %doc %{_javadocdir}/%{name}-%{version}
 %doc %{_javadocdir}/%{name}
+
+
