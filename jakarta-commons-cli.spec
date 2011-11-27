@@ -36,7 +36,7 @@
 
 Name:           jakarta-commons-cli
 Version:        1.1
-Release:        1
+Release:        3
 Summary:        Jakarta Commons CLI, a Command Line Interface for Java
 License:        Apache License
 Group:          Development/Java
