@@ -36,12 +36,12 @@
 
 Summary:	Jakarta Commons CLI, a Command Line Interface for Java
 Name:		jakarta-commons-cli
-Version:	1.1
+Version:	1.2
 Release:	1
 License:	Apache License
 Group:		Development/Java
 Url:		http://jakarta.apache.org/commons/cli/
-Source0:	http://archive.apache.org/dist/jakarta/commons/cli/source/%{short_name}-%{version}-src.tar.gz
+Source0:	http://archive.apache.org/dist/jakarta/commons/cli/source/commons-cli-1.2-src.tar.gz
 %if !%{gcj_support}
 BuildArch:	noarch
 %else
@@ -121,4 +121,5 @@ ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
 %files javadoc
 %doc %{_javadocdir}/%{name}-%{version}
 %doc %{_javadocdir}/%{name}
+
 
