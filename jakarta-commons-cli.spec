@@ -40,7 +40,7 @@ Version:	1.1
 Release:	1
 License:	Apache License
 Group:		Development/Java
-Url:		http://jakarta.apache.org/commons/cli/
+Url:		https://jakarta.apache.org/commons/cli/
 Source0:	http://archive.apache.org/dist/jakarta/commons/cli/source/%{short_name}-%{version}-src.tar.gz
 %if !%{gcj_support}
 BuildArch:	noarch
